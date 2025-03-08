@@ -25,7 +25,6 @@ const indexToDo = () => {
   return JSON.parse(data);
 };
 
-
 const updateToDo = (id, todo) => {
   // read data from file as a string
   const dataString = fs.readFileSync("./db.json", { encoding: "utf-8" });
@@ -47,8 +46,16 @@ const updateToDo = (id, todo) => {
   fs.writeFileSync("./db.json", JSON.stringify(data));
 };
 
-// updateToDo(2, { title: "modified", status: "done" });
-const deleteToDo = (id) => {};
+const deleteToDo = (id) => {
+  // read all items as a string
+  const dataString = fs.readFileSync("./db.json", { encoding: "utf-8" });
+  // convert to an object to traverse
+  let data = JSON.parse(dataString);
+  // delete the item
+  const filteredData = data.filter((item)=> item.id != id)
+  // write the data to disk
+  fs.writeFileSync("./db.json", JSON.stringify(filteredData));
+};
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to our todo list app!</h1>");
@@ -74,12 +81,17 @@ app.put("/todos/:id", (req, res) => {
   const id = req.params.id;
   console.log(req.body);
   updateToDo(id, req.body);
-  const data = readToDos();
+  const data = indexToDo();
   res.send(data);
 });
 
 // DELETE /todos/:id - Delete a todo
-app.delete("/todos/:id", (req, res) => {});
+app.delete("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  deleteToDo(id);
+  const data = indexToDo();
+  res.send(data);
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
