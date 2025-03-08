@@ -6,13 +6,13 @@
   },
   {
     "id": 2,
-    "title": "Get Groceries",
-    "status": "In-progress"
+    "title": "modified",
+    "status": "done"
   },
   {
     "id": 3,
-    "title": "3rd ToDo",
-    "status": "In-progress"
+    "title": "My Modified",
+    "status": "Done"
   },
   {
     "id": 4,
