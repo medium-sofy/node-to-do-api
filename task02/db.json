@@ -1,12 +1,1 @@
-[
-  {
-    "id": 1,
-    "title": "Learn Express",
-    "status": "In progress"
-  },
-  {
-    "id": 2,
-    "title": "modified",
-    "status": "done"
-  }
-]
+[{"id":1,"title":"Learn Express","status":"In progress"},{"id":2,"title":"My Beautiful To-Do","status":"Done"}]
